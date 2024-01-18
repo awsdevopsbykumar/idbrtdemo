@@ -1,0 +1,4 @@
+https://github.com/docker/labs/blob/master/developer-tools/java/chapters/ch05-compose.adoc
+
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-centos-7
+

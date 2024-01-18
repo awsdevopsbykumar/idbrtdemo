@@ -1,0 +1,33 @@
+cd into existing dir
+
+#Create file Dockerfile
+
+FROM nginx:latest
+COPY . /usr/share/nginx/html
+EXPOSE 80
+
+#Create file 
+
+HelloWorld.html
+
+<html>
+<body>
+Hello World by Kumar!
+</body>
+</html>
+
+docker build -t mynginx-image:v1.0.0 .
+
+docker ps
+
+docker images
+
+docker kill ae513a47849c 
+
+#kill the past process if any
+
+docker run -d -p 80:80 mynginx-image:v1.0.0
+
+http://40.76.48.188:80/HelloWorld.html
+
+http://IPaddress/HelloWorld.html

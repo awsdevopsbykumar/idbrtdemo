@@ -1,0 +1,84 @@
+Dockerfile
+
+###################################################################################################
+FROM centos
+
+RUN mkdir /opt/tomcat/
+
+WORKDIR /opt/tomcat
+RUN curl -O https://downloads.apache.org/tomcat/tomcat-8/v8.5.59/bin/apache-tomcat-8.5.59.tar.gz
+RUN tar xvfz apache*.tar.gz
+RUN mv apache-tomcat-8.5.59/* /opt/tomcat/.
+RUN yum -y install java
+RUN java -version
+
+WORKDIR /opt/tomcat/webapps
+RUN curl -O -L https://github.com/AKSarav/SampleWebApp/raw/master/dist/SampleWebApp.war
+
+EXPOSE 8080
+
+CMD ["/opt/tomcat/bin/catalina.sh", "run"]
+
+
+#################################################################################################
+
+docker build -t awsdevopsbykumar/tomcat8 .
+
+docker login
+
+docker push awsdevopsbykumar/tomcat8
+
+docker pull awsdevopsbykumar/tomcat8
+
+docker images
+
+docker image ls awsdevopsbykumar/tomcat8
+
+docker container run -it -d --name tomcatcontainer1 -p 8081:8080 awsdevopsbykumar/tomcat8
+
+docker ps
+
+http://192.168.139.128:8081/SampleWebApp
+
+
+# How to start and stop the container 
+
+docker stop <containername/id>  # to stop the container which is running in background mode
+docker container start <containername/id> # to start the already stopped container
+
+# monitoring the Container 
+
+docker container list # list the containers created
+
+docker container ls -a  #to list the containers including not running containers
+
+docker ps    #to list the running container
+
+docker info #docker engine status including container running/paused/stopped containers list
+
+docker container stats <containername/id> #prints the CPU and MEM usage data of the container name
+
+docker container stats #prints the CPU and MEM usage of all running containers
+
+docker container top <containername/id> #executes the top command in the container specified, fails if the specified container is not running
+
+# How to remove/delete the container
+
+docker container rm <containername/id> # Remove the Container 
+
+# How to remove/delete the image
+
+docker container rmi <imagename/imageid> # Remove the image
+
+# How to view the logs of the running container
+
+docker container logs <containername/id> # to view the logs of the container 
+
+
+
+
+
+
+
+
+

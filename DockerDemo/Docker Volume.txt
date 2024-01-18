@@ -1,0 +1,18 @@
+#Create and manage volumes
+
+docker volume create my-vol
+#Path in host OS
+/var/lib/docker/volumes/my-vol/_data
+docker volume ls
+docker volume inspect my-vol
+
+docker run -d --name devtest -v my-vol:/usr/share/nginx/html -p 80:80 nginx
+echo "<html><body>Hello Team from Pramod</body></html>" > /var/lib/docker/volumes/my-vol/_data/index.html
+
+docker inspect devtest
+
+docker container stop devtest
+docker container rm devtest
+docker volume rm my-vol
+
+docker run -d --name=webApp1 --mount source=my-vol,destination=/usr/share/nginx/html -p 80:80 nginx
